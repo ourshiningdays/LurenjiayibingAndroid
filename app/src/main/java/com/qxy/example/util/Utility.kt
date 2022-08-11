@@ -26,7 +26,8 @@ object Utility {
         try {
             Log.e("UtilityInClientToken", response)
             val jsonObject = JSONObject(response)
-            val clientToken = jsonObject.getJSONObject("data").getString("client_token")
+            //注意下一行代码接口返回字段本身就是access_token，并非client_token打错
+            val clientToken = jsonObject.getJSONObject("data").getString("access_token")
             Log.e("UtilityInClientToken", clientToken)
             return clientToken
         } catch (e: JSONException) {
