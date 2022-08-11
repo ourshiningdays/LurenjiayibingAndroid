@@ -8,6 +8,7 @@ import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 import com.qxy.example.conf.Config
 import com.qxy.example.util.HttpUtil
 import com.qxy.example.util.Utility.handleAccessTokenResponse
+import com.qxy.example.util.Utility.handleClientTokenResponse
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.FormBody
@@ -67,7 +68,7 @@ object DouYinAuthUtil {
             }
 
             override fun onResponse(call: Call, response: Response) {
-                clientToken = handleAccessTokenResponse(response.body?.string())
+                clientToken = handleClientTokenResponse(response.body?.string())
                 println("AuthUtil:" + clientToken)
                 val editor = activity.getSharedPreferences("data", Context.MODE_PRIVATE).edit()
                 editor.putString("client_token", clientToken)

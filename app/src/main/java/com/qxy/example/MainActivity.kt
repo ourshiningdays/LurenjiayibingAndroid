@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val prefs = getSharedPreferences("data", Context.MODE_PRIVATE)
-        prefs.getString("access_token", "无")?.let { Log.e("MainActivity", it) }
         //判断是否已经获取到accessToken
         /* 本版本暂时不需要授权
         if(prefs.getString("access_token", null) == null){
