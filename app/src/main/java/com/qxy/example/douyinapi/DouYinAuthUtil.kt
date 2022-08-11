@@ -6,9 +6,9 @@ import com.bytedance.sdk.open.aweme.authorize.model.Authorization
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 import com.qxy.example.conf.Config
-import com.qxy.example.util.HttpUtil
-import com.qxy.example.util.Utility.handleAccessTokenResponse
-import com.qxy.example.util.Utility.handleClientTokenResponse
+import com.qxy.example.logic.network.HttpUtil
+import com.qxy.example.logic.network.Utility.handleAccessTokenResponse
+import com.qxy.example.logic.network.Utility.handleClientTokenResponse
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.FormBody

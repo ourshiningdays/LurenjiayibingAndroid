@@ -1,4 +1,4 @@
-package com.qxy.example.util
+package com.qxy.example.logic.network
 
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
