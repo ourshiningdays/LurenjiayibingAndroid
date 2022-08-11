@@ -38,14 +38,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "目前无需授权", Toast.LENGTH_SHORT).show()
         }
         */
-        if(prefs.getString("client_token", null) == null){
-            //TODO 判断clientToken是否过期
-            Toast.makeText(this, "第一次打开，获取客户端授权", Toast.LENGTH_SHORT).show()
-            DouYinAuthUtil.getClientToken(this)
-        }
-        else{
-            Toast.makeText(this, "目前无需客户端授权", Toast.LENGTH_SHORT).show()
-        }
+        //因为ClientToken只有两个小时的有效期，所以暂时每次打开App时都获取一次
+        DouYinAuthUtil.getClientToken(this)
+
+
         //以下代码为Android Studio项目模板内置底部Tab代码
         val navView: BottomNavigationView = binding.navView
 
