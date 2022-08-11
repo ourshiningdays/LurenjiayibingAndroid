@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("data", Context.MODE_PRIVATE)
         prefs.getString("access_token", "无")?.let { Log.e("MainActivity", it) }
         //判断是否已经获取到accessToken
+        /* 本版本暂时不需要授权
         if(prefs.getString("access_token", null) == null){
             //TODO 判断accessToken是否过期
             Toast.makeText(this, "检测到未获取授权，请获取授权", Toast.LENGTH_SHORT).show()
@@ -37,8 +38,15 @@ class MainActivity : AppCompatActivity() {
         else{
             Toast.makeText(this, "目前无需授权", Toast.LENGTH_SHORT).show()
         }
-
-
+        */
+        if(prefs.getString("client_token", null) == null){
+            //TODO 判断clientToken是否过期
+            Toast.makeText(this, "第一次打开，获取客户端授权", Toast.LENGTH_SHORT).show()
+            DouYinAuthUtil.getClientToken(this)
+        }
+        else{
+            Toast.makeText(this, "目前无需客户端授权", Toast.LENGTH_SHORT).show()
+        }
         //以下代码为Android Studio项目模板内置底部Tab代码
         val navView: BottomNavigationView = binding.navView
 

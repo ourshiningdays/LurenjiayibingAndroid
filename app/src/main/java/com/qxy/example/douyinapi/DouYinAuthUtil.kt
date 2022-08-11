@@ -24,11 +24,11 @@ object DouYinAuthUtil {
          */
         request.scope = "trial.whitelist,user_info" //
         //request.callerLocalEntry = "com.xxx.xxx...activity";
-        request.state = "ww";                                 // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
+        request.state = "ww"                               // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
         douYinOpenApi.authorize(request)
     }
     fun getAccessToken(activity: Activity, authCode: String) {
-        var accessToken: String? = null
+        var accessToken: String?
         val getAccessTokenURL= "https://open.douyin.com/oauth/access_token/"
         val formBody = FormBody.Builder()
             .add("client_secret", Config.clientSecret)
@@ -47,6 +47,30 @@ object DouYinAuthUtil {
 //                println("AuthUtil:" + accessToken)
                 val editor = activity.getSharedPreferences("data", Context.MODE_PRIVATE).edit()
                 editor.putString("access_token", accessToken)
+                editor.apply()
+            }
+        })
+    }
+
+    fun getClientToken(activity: Activity) {
+        var clientToken: String?
+        val getClientTokenURL= "https://open.douyin.com/oauth/client_token/"
+        val formBody = FormBody.Builder()
+            .add("client_secret", Config.clientSecret)
+            .add("grant_type", "client_credential")
+            .add("client_key", Config.clientKey)
+            .build()
+
+        HttpUtil.sendOkHttpPostRequest(getClientTokenURL, formBody, callback = object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                clientToken = handleAccessTokenResponse(response.body?.string())
+                println("AuthUtil:" + clientToken)
+                val editor = activity.getSharedPreferences("data", Context.MODE_PRIVATE).edit()
+                editor.putString("client_token", clientToken)
                 editor.apply()
             }
         })

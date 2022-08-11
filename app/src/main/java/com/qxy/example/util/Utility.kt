@@ -20,4 +20,19 @@ object Utility {
 
         return null
     }
+
+    fun handleClientTokenResponse(response: String?): String? {
+        if(response == null) return null
+        try {
+            Log.e("UtilityInClientToken", response)
+            val jsonObject = JSONObject(response)
+            val clientToken = jsonObject.getJSONObject("data").getString("client_token")
+            Log.e("UtilityInClientToken", clientToken)
+            return clientToken
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
 }
