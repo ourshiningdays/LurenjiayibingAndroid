@@ -7,6 +7,7 @@ import android.content.Context
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.qxy.example.conf.Config
+import com.qxy.example.douyinapi.DouYinAuthUtil
 
 
 /**
@@ -18,7 +19,10 @@ class CustomApplication : Application() {
         lateinit var context: Context
     }
     override fun onCreate() {
+
         super.onCreate()
+        //        //因为ClientToken只有两个小时的有效期，所以暂时每次打开App时都获取一次
+        DouYinAuthUtil.getClientToken(this)
         context = applicationContext
         DouYinOpenApiFactory.init(DouYinOpenConfig(Config.clientKey))
     }

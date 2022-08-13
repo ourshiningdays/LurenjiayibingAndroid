@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "目前无需授权", Toast.LENGTH_SHORT).show()
         }
         */
-        //因为ClientToken只有两个小时的有效期，所以暂时每次打开App时都获取一次
-        DouYinAuthUtil.getClientToken(this)
+
 
 
         //以下代码为Android Studio项目模板内置底部Tab代码

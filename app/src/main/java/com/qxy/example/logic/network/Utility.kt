@@ -46,6 +46,7 @@ object Utility {
     fun handleGetRankResponse(response: String): List<RankList>? {
         try {
             val jsonObject = JSONObject(response)
+            Log.e("RankResponse:", response)
 //            val data = jsonObject.getJSONObject("data")
             //val jsonArray = data.getJSONArray("list").getJSONObject(0).toString()
             //return Gson().fromJson(jsonArray, RankList::class.java)

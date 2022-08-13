@@ -1,6 +1,7 @@
 package com.qxy.example.douyinapi
 
 import android.app.Activity
+import android.app.Application
 import android.content.Context
 import com.bytedance.sdk.open.aweme.authorize.model.Authorization
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
@@ -71,6 +72,30 @@ object DouYinAuthUtil {
                 clientToken = handleClientTokenResponse(response.body?.string())
                 println("AuthUtil:" + clientToken)
                 val editor = activity.getSharedPreferences("data", Context.MODE_PRIVATE).edit()
+                editor.putString("client_token", clientToken)
+                editor.apply()
+            }
+        })
+    }
+
+    fun getClientToken(application: Application) {
+        var clientToken: String?
+        val getClientTokenURL= "https://open.douyin.com/oauth/client_token/"
+        val formBody = FormBody.Builder()
+            .add("client_secret", Config.clientSecret)
+            .add("grant_type", "client_credential")
+            .add("client_key", Config.clientKey)
+            .build()
+
+        HttpUtil.sendOkHttpPostRequest(getClientTokenURL, formBody, callback = object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                clientToken = handleClientTokenResponse(response.body?.string())
+                println("AuthUtil:" + clientToken)
+                val editor = application.getSharedPreferences("data", Context.MODE_PRIVATE).edit()
                 editor.putString("client_token", clientToken)
                 editor.apply()
             }

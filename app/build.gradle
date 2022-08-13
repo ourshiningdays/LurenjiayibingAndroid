@@ -7,16 +7,24 @@ android {
     compileSdk 32
     signingConfigs {
         release {
-            keyAlias "AndroidDebugKey"
-            keyPassword "android"
-            storeFile file('debug.keystore')
-            storePassword "android"
+//            keyAlias "AndroidDebugKey"
+//            keyPassword "android"
+//            storeFile file('debug.keystore')
+//            storePassword "android"
+            keyAlias "LurenJiayibing"
+            keyPassword "LurenJiayibing"
+            storeFile file('LurenJiayibing.jks')
+            storePassword "LurenJiayibing"
         }
         debug {
-            keyAlias "AndroidDebugKey"
-            keyPassword "android"
-            storeFile file('debug.keystore')
-            storePassword "android"
+//            keyAlias "AndroidDebugKey"
+//            keyPassword "android"
+//            storeFile file('debug.keystore')
+//            storePassword "android"
+            keyAlias "LurenJiayibing"
+            keyPassword "LurenJiayibing"
+            storeFile file('LurenJiayibing.jks')
+            storePassword "LurenJiayibing"
         }
     }
     defaultConfig {
@@ -66,6 +74,8 @@ dependencies {
     implementation 'com.bytedance.ies.ugc.aweme:opensdk-china-external:0.1.9.0'
     implementation 'com.bytedance.ies.ugc.aweme:opensdk-common:0.1.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
     implementation 'com.google.code.gson:gson:2.9.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
