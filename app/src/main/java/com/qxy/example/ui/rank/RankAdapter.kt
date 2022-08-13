@@ -21,6 +21,7 @@ class RankAdapter(private val fragment: Fragment, private val rankList: List<Ran
             val directorsText : TextView = view.findViewById(R.id.directorsText)
             val discussionHotText : TextView = view.findViewById(R.id.discussionHotText)
 //            val idText : TextView = view.findViewById(R.id.idText)
+
             val influenceHotText : TextView = view.findViewById(R.id.influenceHotText)
 //            val maoyanText : TextView = view.findViewById(R.id.maoyanText)
             val nameText : TextView = view.findViewById(R.id.nameText)
