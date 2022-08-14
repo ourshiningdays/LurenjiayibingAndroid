@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+/**
+ * 本类暂未实际使用
+ */
 class RankViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
