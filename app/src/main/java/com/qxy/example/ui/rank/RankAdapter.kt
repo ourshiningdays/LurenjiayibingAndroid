@@ -73,7 +73,7 @@ class RankAdapter(private val fragment: Fragment, private val rankList: List<Ran
 
         if(rank.tags != null){
             holder.tagsText.text = context.getString(R.string.tags, TextUtils.join("、",rank.tags))
-        } else holder.tagsText.height = 0
+        }
 
         holder.topicHotText.text = context.getString(R.string.topicHot, rank.topicHot)
 

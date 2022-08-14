@@ -102,7 +102,7 @@ class RankFragment : Fragment() {
         fabMovie.animate().translationY(0F)
     }
     private fun requestRank(rankType: String = currentRankType){
-        val rankUrl = "https://open.douyi1n.com/discovery/ent/rank/item?type=$currentRankType"
+        val rankUrl = "https://open.douyin.com/discovery/ent/rank/item?type=$currentRankType"
 
 //        val prefs = requireActivity().getSharedPreferences("data", Context.MODE_PRIVATE)
 
