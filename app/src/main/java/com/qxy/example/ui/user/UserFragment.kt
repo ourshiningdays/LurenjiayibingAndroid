@@ -9,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.bytedance.sdk.share.demo.CustomApplication
+import com.qxy.example.CustomApplication
 import com.qxy.example.LoginActivity
 import com.qxy.example.R
-import com.qxy.example.douyinapi.DouYinAuthUtil
 
 class UserFragment : Fragment() {
 

@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bytedance.sdk.share.demo.CustomApplication.Companion.context
+import com.qxy.example.CustomApplication.Companion.context
 import com.qxy.example.R
 import com.qxy.example.logic.model.RankList
 

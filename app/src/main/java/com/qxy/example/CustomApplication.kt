@@ -1,4 +1,4 @@
-package com.bytedance.sdk.share.demo
+package com.qxy.example
 
 import android.annotation.SuppressLint
 import android.app.Application

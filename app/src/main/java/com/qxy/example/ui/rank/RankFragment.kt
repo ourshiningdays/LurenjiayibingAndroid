@@ -10,11 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bytedance.sdk.share.demo.CustomApplication
+import com.qxy.example.CustomApplication
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.qxy.example.R
-import com.qxy.example.databinding.ActivityMainBinding
 import com.qxy.example.databinding.FragmentRankBinding
 import com.qxy.example.logic.model.RankList
 import com.qxy.example.logic.network.Utility
