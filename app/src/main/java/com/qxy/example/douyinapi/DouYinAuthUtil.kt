@@ -26,7 +26,7 @@ object DouYinAuthUtil {
          */
         request.scope = "trial.whitelist,user_info" //
         //request.callerLocalEntry = "com.xxx.xxx...activity";
-        request.state = "ww"                               // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
+        //request.state = "ww"                               // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
         douYinOpenApi.authorize(request)
     }
     fun getAccessToken(activity: Activity, authCode: String) {

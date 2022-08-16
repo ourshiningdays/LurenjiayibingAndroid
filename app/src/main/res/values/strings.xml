@@ -1,19 +1,18 @@
 <resources>
     <string name="app_name">路人甲乙丙</string>
     <string name="title_rank">排行榜</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_user">我的</string>
     <string name="actors">演员：%s</string>
     <string name="directors">导演：%s</string>
     <string name="discussionHot">讨论热度：%s</string>
     <string name="areas">地区：%s</string>
-<!--    <string name="id">ID：%s</string>-->
+    <!--    <string name="id">ID：%s</string>-->
     <string name="influenceHot">影响力热度：%s</string>
-<!--    <string name="maoyan">猫眼：%s</string>-->
+    <!--    <string name="maoyan">猫眼：%s</string>-->
     <string name="name">节目名：%s</string>
     <string name="englishName">英文名：%s</string>
     <string name="releaseDate">日期：%s</string>
     <string name="topicHot">话题热度：%s</string>
     <string name="tags">标签：%s</string>
-<!--    <string name="type">类型：%s</string>-->
+    <!--    <string name="type">类型：%s</string>-->
 </resources>

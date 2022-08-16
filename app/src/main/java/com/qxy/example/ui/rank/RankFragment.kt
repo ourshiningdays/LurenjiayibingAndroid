@@ -49,10 +49,7 @@ class RankFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?): View{
-//    ): View {
-//        val rankViewModel = ViewModelProvider(this).get(RankViewModel::class.java)
-        //_binding = FragmentRankBinding.inflate(inflater, container, false)
-        //val root: View = binding.root
+
         val view = inflater.inflate(R.layout.fragment_rank, container, false)
 
         fabChange = view.findViewById(R.id.fab_rank_change)
@@ -91,21 +88,10 @@ class RankFragment : Fragment() {
                 .setAction("确认") {}.show()
             requestRank()
         }
-
         requestRank()
-
-        //val textView: TextView = binding.textRank
-//        rankViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-//        return root
         return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
     private fun showFABMenu() {
         isFABOpen = true
         //动画效果
@@ -126,10 +112,9 @@ class RankFragment : Fragment() {
      * 请求排行榜信息
      */
     private fun requestRank(){
-        val rankUrl = "https://open.douyin.com/discovery/ent/rank/item?type=$currentRankType"
 
-//        val prefs = requireActivity().getSharedPreferences("data", Context.MODE_PRIVATE)
-
+        // 避免超过限额 本处暂时使用无效网络地址
+        val rankUrl = "https://open.douyin.<TEMP>.com/discovery/ent/rank/item?type=$currentRankType"
         val prefs = CustomApplication.context.getSharedPreferences("data", Context.MODE_PRIVATE)
         var clientToken = prefs.getString("client_token","")
         //TODO 下面的解决方案只是临时的。 后续必须修改
@@ -156,7 +141,8 @@ class RankFragment : Fragment() {
                         showRankInfo(rankListResp)
                         Toast.makeText(activity, "获取榜单信息成功", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(activity, "获取榜单信息失败", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "获取榜单信息失败，请尝试重启App"
+                            , Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -164,6 +150,9 @@ class RankFragment : Fragment() {
         OkHttpClient().newCall(request).enqueue(callback)
     }
 
+    /**
+     * 显示排行榜信息
+     */
     private fun showRankInfo(rankList: List<RankList>){
         println("showRankInfo:$rankList")
         val layoutManager = LinearLayoutManager(activity)
