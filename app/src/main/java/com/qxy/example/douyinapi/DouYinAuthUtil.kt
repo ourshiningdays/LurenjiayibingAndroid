@@ -30,7 +30,7 @@ object DouYinAuthUtil {
         request.scope:
         添加试用白名单权限(trial.whitelist)、用户授权时必选权限(user_info)
          */
-        request.scope = "trial.whitelist,user_info" //
+        request.scope = "trial.whitelist,user_info,following.list" //
         //request.callerLocalEntry = "com.xxx.xxx...activity";
         //request.state = "ww"                               // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
         douYinOpenApi.authorize(request)

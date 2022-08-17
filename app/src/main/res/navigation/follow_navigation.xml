@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/follow_navigation"
+    app:startDestination="@+id/navigation_follow">
+
+    <fragment
+        android:id="@+id/navigation_follow"
+        android:name="com.qxy.example.ui.user.FollowFragment"
+        android:label="@string/follow"
+        tools:layout="@layout/fragment_follow" />
+
+    <fragment
+        android:id="@+id/navigation_follower"
+        android:name="com.qxy.example.ui.user.FollowerFragment"
+        android:label="@string/follower"
+        tools:layout="@layout/fragment_follower" />
+</navigation>

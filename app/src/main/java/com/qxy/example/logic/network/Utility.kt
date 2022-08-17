@@ -4,6 +4,7 @@ import android.text.TextUtils
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.qxy.example.logic.model.FollowList
 import com.qxy.example.logic.model.RankData
 import com.qxy.example.logic.model.RankList
 import com.qxy.example.logic.model.RankResponse
@@ -58,6 +59,20 @@ object Utility {
             val data = jsonObject.getJSONObject("data")
             val jsonArray = data.getJSONArray("list").toString()
             val type = object: TypeToken<List<RankList>>(){}.type
+            return Gson().fromJson(jsonArray, type)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    fun handleGetFollowResponse(response: String): List<FollowList>? {
+        try {
+            val jsonObject = JSONObject(response)
+            Log.e("FollowResponse:", response)
+            val data = jsonObject.getJSONObject("data")
+            val jsonArray = data.getJSONArray("list").toString()
+            val type = object: TypeToken<List<FollowList>>(){}.type
             return Gson().fromJson(jsonArray, type)
         } catch (e: JSONException) {
             e.printStackTrace()

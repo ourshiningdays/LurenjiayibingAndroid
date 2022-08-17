@@ -2,6 +2,8 @@
     <string name="app_name">路人甲乙丙</string>
     <string name="title_rank">排行榜</string>
     <string name="title_user">我的</string>
+    <string name="follower">粉丝</string>
+    <string name="follow">关注</string>
     <string name="actors">演员：%s</string>
     <string name="directors">导演：%s</string>
     <string name="discussionHot">讨论热度：%s</string>
@@ -14,5 +16,7 @@
     <string name="releaseDate">日期：%s</string>
     <string name="topicHot">话题热度：%s</string>
     <string name="tags">标签：%s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--    <string name="type">类型：%s</string>-->
 </resources>

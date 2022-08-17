@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.qxy.example.CustomApplication
@@ -35,7 +36,11 @@ class UserFragment : Fragment() {
             Log.e("获取到open_id", openId)
         }
 
-
+        val followTempButton : Button = view.findViewById(R.id.tempFollowButton)
+        followTempButton.setOnClickListener {
+            val intent = Intent(activity, FollowActivity::class.java)
+            startActivity(intent)
+        }
         return view
     }
 
