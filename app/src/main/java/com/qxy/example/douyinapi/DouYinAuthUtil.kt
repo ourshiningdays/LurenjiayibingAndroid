@@ -3,9 +3,13 @@ package com.qxy.example.douyinapi
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.util.Log
+import android.util.TimeUtils
+import android.widget.Toast
 import com.bytedance.sdk.open.aweme.authorize.model.Authorization
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
+import com.qxy.example.CustomApplication.Companion.context
 import com.qxy.example.conf.Config
 import com.qxy.example.logic.network.HttpUtil
 import com.qxy.example.logic.network.Utility.handleAccessTokenResponse
@@ -14,7 +18,9 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.FormBody
 import okhttp3.Response
+import org.json.JSONObject
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 object DouYinAuthUtil {
     fun init(activity: Activity){
@@ -45,10 +51,14 @@ object DouYinAuthUtil {
             }
 
             override fun onResponse(call: Call, response: Response) {
-                accessToken = handleAccessTokenResponse(response.body?.string())
-//                println("AuthUtil:" + accessToken)
+                val responseReturn = handleAccessTokenResponse(response.body?.string())
+                val openId = responseReturn?.get("OpenId")
+                accessToken = responseReturn?.get("AccessToken")
+                println("AuthUtil:$accessToken,$openId")
                 val editor = activity.getSharedPreferences("data", Context.MODE_PRIVATE).edit()
                 editor.putString("access_token", accessToken)
+                editor.putString("open_id",openId)
+                editor.putLong("expired_time", System.currentTimeMillis() + TimeUnit.DAYS.toMillis(15L))
                 editor.apply()
             }
         })
@@ -101,4 +111,9 @@ object DouYinAuthUtil {
             }
         })
     }
+}
+
+interface onRequestCompleteListener{
+    fun onSuccess()
+    fun onError()
 }
