@@ -26,6 +26,7 @@ class WebViewActivity : AppCompatActivity() {
                 url: String
             ): Boolean {
                 if(URLUtil.isNetworkUrl(url)) {
+
                     return false
                 }
                 return try {
@@ -37,7 +38,11 @@ class WebViewActivity : AppCompatActivity() {
                 }
             }
         }
+        webView.clearCache(true);
+        webView.reload();
         intent.getStringExtra("url")?.let { webView.loadUrl(it) }
     }
+
+
 
 }
