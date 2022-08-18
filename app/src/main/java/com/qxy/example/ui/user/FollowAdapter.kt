@@ -43,11 +43,12 @@ class FollowAdapter (private val fragment: Fragment, private val followList: Lis
             1 -> holder.gender.text = "\u2642\uFE0F" //男
             2 -> holder.gender.text = "\u2640\uFE0F" //女
         }
+        val noProvinceList = listOf("北京","上海","天津","重庆")
         var country = follow.country
         var province = follow.province?.replace("省".toRegex(), "")//统一删除"省"
         var city = follow.city?.replace("市".toRegex(), "")//统一删除"市"
         if(country == "") country = null
-        if(province == "") province = null
+        if(province == "" || noProvinceList.contains(province)) province = null
         if(city == "") city = null
         if(country == null && province == null && city == null){ //API无地区返回数据则不展示
             holder.location.text = ""
