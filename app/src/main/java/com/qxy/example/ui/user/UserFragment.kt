@@ -41,6 +41,13 @@ class UserFragment : Fragment() {
             val intent = Intent(activity, FollowActivity::class.java)
             startActivity(intent)
         }
+
+        val videoTempButton : Button = view.findViewById(R.id.tempVideoButton)
+        videoTempButton.setOnClickListener {
+            val intent = Intent(activity, WebViewActivity::class.java)
+            intent.putExtra("url", "https://www.iesdouyin.com/share/video/7087788696547740959/?region=CN&mid=7087788841586690846&u_code=2d0a46hhf0l2&did=MS4wLjABAAAAcJdzL4Nfle-Gl8twy9Xzk5YN6_CflAHWOxrzrs5IhxoxmohBt51IVbp8LY_0xhz8&iid=MS4wLjABAAAAxyQuHt6ftPu2olPaEosKw3JT4Td4FIkU1V13Fc6GhLIoG7ayR1ypS2c4bTbHTt0X&with_sec_did=1&titleType=title&utm_source=copy&utm_campaign=client_share&utm_medium=android&app=aweme")
+            startActivity(intent)
+        }
         return view
     }
 

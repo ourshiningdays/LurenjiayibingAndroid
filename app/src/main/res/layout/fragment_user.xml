@@ -25,4 +25,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/tempFollowButton"
         android:text="点击查看关注" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tempVideoButton"
+        android:text="点击查看视频" />
 </LinearLayout>

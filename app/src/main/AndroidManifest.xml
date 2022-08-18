@@ -24,6 +24,10 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ui.user.WebViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".ui.user.FollowActivity"
             android:exported="false" />
         <activity
