@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_follow"
-        android:icon="@drawable/rank"
+        android:icon="@drawable/black_star_icon"
         android:title="@string/follow" />
 
     <item
         android:id="@+id/navigation_follower"
-        android:icon="@drawable/user_profile_icon"
+        android:icon="@drawable/heart_icon"
         android:title="@string/follower" />
 
 </menu>

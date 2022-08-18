@@ -53,10 +53,8 @@ class FollowAdapter (private val fragment: Fragment, private val followList: Lis
         if(country == null && province == null && city == null){ //API无地区返回数据则不展示
             holder.location.text = ""
         } else{
-            holder.location.text = "\uD83D\uDCCD $country ${province}省 ${city}市"
-                .replace("null省 ".toRegex(),"") //处理API未返回"省"情况
-                .replace("null市".toRegex(), "") //处理API未返回"市"情况
-                .replace("null".toRegex(),"") //处理遗漏null
+            holder.location.text = "\uD83D\uDCCD $country $province ${city}"
+                .replace("null".toRegex(),"") //处理API未返回省市情况和遗漏null
         }
 
         Glide.with(CustomApplication.context).load(follow.avatar)

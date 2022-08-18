@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.qxy.example.CustomApplication
 import com.qxy.example.R
 import com.qxy.example.logic.model.FollowList
-import com.qxy.example.logic.model.RankList
 import com.qxy.example.logic.network.Utility
-import com.qxy.example.ui.rank.RankAdapter
 import okhttp3.*
 import java.io.IOException
 
