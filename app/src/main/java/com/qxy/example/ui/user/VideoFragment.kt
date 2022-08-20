@@ -66,7 +66,7 @@ class VideoFragment : Fragment() {
     /**
      * 显示视频信息
      */
-    private fun showVideoInfo(videoList: List<VideoList>){
+    private fun showVideoInfo(videoList: MutableList<VideoList>){
         println("showVideoInfo:$videoList")
         val recyclerView: RecyclerView = requireActivity().findViewById(R.id.video_recyclerView)
         val layoutManager = StaggeredGridLayoutManager(3,

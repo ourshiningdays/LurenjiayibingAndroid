@@ -7,16 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.bumptech.glide.request.RequestOptions
-import com.qxy.example.CustomApplication
 import com.qxy.example.CustomApplication.Companion.context
 import com.qxy.example.R
 import com.qxy.example.logic.model.VideoList
 import java.text.SimpleDateFormat
 import java.util.*
 
-class VideoAdapter(private val videoList: List<VideoList>, val itemClick:(Int) -> Unit) :
+class VideoAdapter(private val videoList: MutableList<VideoList>, val itemClick:(Int) -> Unit) :
     RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cover: ImageView = view.findViewById(R.id.videoImg)
@@ -43,8 +40,16 @@ class VideoAdapter(private val videoList: List<VideoList>, val itemClick:(Int) -
         holder.play.text = context.getString(R.string.playCount,  video.statistics?.playCount)
         holder.uploadTime.text = video.createTime?.let { getDateTime(it) }
         holder.itemView.setOnClickListener { itemClick(position) }
-
         Glide.with(context).load(video.cover).into(holder.cover)
+        if(video.isTop == true){
+            val item: VideoList = videoList[position]
+            item.title = context.getString(R.string.topEmoji, item.title)
+            holder.title.text = item.title
+            videoList.remove(item) // remove item from the list
+            videoList.add(0, item) // add at 0 index of your list
+
+            //notifyDataSetChanged()
+        }
     }
 
     override fun getItemCount() = videoList.size
@@ -58,4 +63,6 @@ class VideoAdapter(private val videoList: List<VideoList>, val itemClick:(Int) -
             e.toString()
         }
     }
+
+
 }

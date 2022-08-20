@@ -79,7 +79,7 @@ object Utility {
         return null
     }
 
-    fun handleGetVideoResponse(response: String): List<VideoList>? {
+    fun handleGetVideoResponse(response: String): MutableList<VideoList>? {
         try {
             val jsonObject = JSONObject(response)
             Log.e("VideoResponse:", response)

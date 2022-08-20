@@ -19,5 +19,6 @@
     <string name="noTitle">无标题</string>>
     <string name="playCount">播放数：%d</string>
     <string name="commentCount">点赞数：%d</string>
+    <string name="topEmoji">\uD83D\uDD1D %s</string>
     <!--    <string name="type">类型：%s</string>-->
 </resources>
