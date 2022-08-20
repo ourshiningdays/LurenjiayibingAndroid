@@ -17,7 +17,7 @@ import com.qxy.example.R
 import com.qxy.example.logic.model.FollowList
 
 
-class FollowAdapter (private val fragment: Fragment, private val followList: List<FollowList>) :
+class FollowAdapter(private val followList: List<FollowList>) :
     RecyclerView.Adapter<FollowAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

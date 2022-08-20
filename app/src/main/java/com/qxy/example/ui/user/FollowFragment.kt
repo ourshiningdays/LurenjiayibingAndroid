@@ -65,14 +65,14 @@ class FollowFragment : Fragment() {
     }
 
     /**
-     * 显示排行榜信息
+     * 显示关注信息
      */
     private fun showFollowInfo(followList: List<FollowList>){
         println("showFollowInfo:$followList")
         val layoutManager = LinearLayoutManager(activity)
         val recyclerView : RecyclerView = requireActivity().findViewById(R.id.follow_recyclerView)
         recyclerView.layoutManager = layoutManager
-        val adapter = FollowAdapter(this, followList)
+        val adapter = FollowAdapter(followList)
         recyclerView.adapter = adapter
     }
 }

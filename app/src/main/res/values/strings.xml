@@ -16,7 +16,8 @@
     <string name="releaseDate">日期：%s</string>
     <string name="topicHot">话题热度：%s</string>
     <string name="tags">标签：%s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="noTitle">无标题</string>>
+    <string name="playCount">播放数：%d</string>
+    <string name="commentCount">点赞数：%d</string>
     <!--    <string name="type">类型：%s</string>-->
 </resources>

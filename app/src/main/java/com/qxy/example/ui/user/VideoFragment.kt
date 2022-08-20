@@ -1,41 +1,41 @@
 package com.qxy.example.ui.user
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.qxy.example.CustomApplication
 import com.qxy.example.R
-import com.qxy.example.logic.model.FollowList
+import com.qxy.example.logic.model.VideoList
 import com.qxy.example.logic.network.Utility
+
 import okhttp3.*
 import java.io.IOException
-
-
-class FollowerFragment : Fragment() {
-
+class VideoFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?): View{
-        val view = inflater.inflate(R.layout.fragment_follower, container, false)
-        requestFollower()
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_video, container, false)
+
+        requestVideo()
         return view
     }
-
-    private fun requestFollower(){
+    private fun requestVideo(){
         val prefs = CustomApplication.context.getSharedPreferences("data", Context.MODE_PRIVATE)
         val accessToken = prefs.getString("access_token", null)
         val openId = prefs.getString("open_id", null)
         val size = 20
-        val followerUrl = "https://open.douyin.com/fans/list/?count=$size&open_id=$openId"
+        val followerUrl = "https://open.douyin.com/video/list/?count=$size&open_id=$openId"
         val request: Request = Request.Builder().addHeader("access-token", accessToken!!)
             .url(followerUrl).get().build()
 
@@ -47,15 +47,15 @@ class FollowerFragment : Fragment() {
                 e.printStackTrace()
             }
             override fun onResponse(call: Call, response: Response) {
-                val TAG = "OnResp in FollowerFrag"
-                val followerListResp = Utility.handleGetFollowResponse(response.body?.string()!!)
-                Log.e(TAG, followerListResp.toString())
+                val TAG = "OnResp in VideoFrag"
+                val videoListResp = Utility.handleGetVideoResponse(response.body?.string()!!)
+                Log.e(TAG, videoListResp.toString())
                 activity?.runOnUiThread {
-                    if (followerListResp != null) {
-                        showFollowerInfo(followerListResp)
-                        Toast.makeText(activity, "获取粉丝信息成功", Toast.LENGTH_SHORT).show()
+                    if (videoListResp != null) {
+                        showVideoInfo(videoListResp)
+                        Toast.makeText(activity, "获取视频信息成功", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(activity, "获取粉丝信息失败"
+                        Toast.makeText(activity, "获取视频信息失败"
                             , Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -63,16 +63,24 @@ class FollowerFragment : Fragment() {
         }
         OkHttpClient().newCall(request).enqueue(callback)
     }
-
     /**
-     * 显示粉丝信息
+     * 显示视频信息
      */
-    private fun showFollowerInfo(followerList: List<FollowList>){
-        println("showFollowerInfo:$followerList")
-        val layoutManager = LinearLayoutManager(activity)
-        val recyclerView : RecyclerView = requireActivity().findViewById(R.id.follower_recyclerView)
+    private fun showVideoInfo(videoList: List<VideoList>){
+        println("showVideoInfo:$videoList")
+        val recyclerView: RecyclerView = requireActivity().findViewById(R.id.video_recyclerView)
+        val layoutManager = StaggeredGridLayoutManager(3,
+            StaggeredGridLayoutManager.VERTICAL
+        )
+
         recyclerView.layoutManager = layoutManager
-        val adapter = FollowAdapter(followerList)
+        val adapter = VideoAdapter(videoList){
+            val intent = Intent(activity, WebViewActivity::class.java)
+            intent.putExtra("url", videoList[it].shareUrl)
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
+
+
     }
 }

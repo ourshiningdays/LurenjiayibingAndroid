@@ -2,13 +2,6 @@ package com.qxy.example.logic.model
 
 import com.google.gson.annotations.SerializedName
 
-data class RankResponse(val data: RankData)
-
-data class RankData(@SerializedName("active_Time") val activeTime: String,
-                val description: String,
-                @SerializedName("error_code") val errorCode: String,
-                val rank: List<RankList>)
-
 data class RankList(val actors: List<String>?, val areas: List<String>?,
                     val directors: List<String>?,
                     @SerializedName("discussion_hot") val discussionHot: String?,

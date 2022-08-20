@@ -30,4 +30,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/tempVideoButton"
         android:text="点击查看视频" />
+
+    <fragment
+        android:overScrollMode="never"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.qxy.example.ui.user.VideoFragment"
+        android:id="@+id/video_fragment_container"
+        tools:layout="@layout/fragment_video"
+        android:layout_marginBottom="56dp"/>
+
 </LinearLayout>
