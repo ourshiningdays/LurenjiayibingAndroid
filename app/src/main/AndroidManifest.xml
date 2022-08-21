@@ -29,9 +29,11 @@
             android:exported="false" />
         <activity
             android:name=".ui.user.FollowActivity"
+            android:launchMode="singleTop"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:launchMode="singleTop"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

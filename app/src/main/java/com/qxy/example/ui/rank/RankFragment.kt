@@ -155,9 +155,12 @@ class RankFragment : Fragment() {
     private fun showRankInfo(rankList: List<RankList>){
         println("showRankInfo:$rankList")
         val layoutManager = LinearLayoutManager(activity)
-        val recyclerView : RecyclerView = requireActivity().findViewById(R.id.rank_recyclerView)
-        recyclerView.layoutManager = layoutManager
-        val adapter = RankAdapter(this, rankList)
-        recyclerView.adapter = adapter
+        if(view != null){
+            val recyclerView : RecyclerView = requireView().findViewById(R.id.rank_recyclerView)
+            recyclerView.layoutManager = layoutManager
+            val adapter = RankAdapter(this, rankList)
+            recyclerView.adapter = adapter
+        }
+
     }
 }

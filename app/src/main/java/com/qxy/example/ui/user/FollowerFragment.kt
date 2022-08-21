@@ -70,9 +70,12 @@ class FollowerFragment : Fragment() {
     private fun showFollowerInfo(followerList: List<FollowList>){
         println("showFollowerInfo:$followerList")
         val layoutManager = LinearLayoutManager(activity)
-        val recyclerView : RecyclerView = requireActivity().findViewById(R.id.follower_recyclerView)
-        recyclerView.layoutManager = layoutManager
-        val adapter = FollowAdapter(followerList)
-        recyclerView.adapter = adapter
+        if(view != null){
+            val recyclerView : RecyclerView = requireView().findViewById(R.id.follower_recyclerView)
+            recyclerView.layoutManager = layoutManager
+            val adapter = FollowAdapter(followerList)
+            recyclerView.adapter = adapter
+        }
+
     }
 }

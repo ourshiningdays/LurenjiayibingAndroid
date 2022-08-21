@@ -6,25 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".ui.user.UserFragment"
     android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
 
-    <TextView
-        android:id="@+id/text_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tempFollowButton"
-        android:text="点击查看关注" />
+        <ImageView
+            android:id="@+id/user_Avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/user_Nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_toEndOf="@id/user_Avatar"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:gravity="center"
+           />
+
+        <Button
+            android:id="@+id/followButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_Nickname"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/user_Avatar"
+            android:backgroundTint="@android:color/white"
+            android:gravity="center"
+            android:text="@string/viewFollow"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
 
     <fragment
         android:overScrollMode="never"

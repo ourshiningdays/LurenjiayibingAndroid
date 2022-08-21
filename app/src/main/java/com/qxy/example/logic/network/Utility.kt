@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.qxy.example.logic.model.FollowList
 import com.qxy.example.logic.model.RankList
+import com.qxy.example.logic.model.UserInfo
 import com.qxy.example.logic.model.VideoList
 import org.json.JSONException
 import org.json.JSONObject
@@ -73,6 +74,18 @@ object Utility {
             val jsonArray = data.getJSONArray("list").toString()
             val type = object: TypeToken<List<FollowList>>(){}.type
             return Gson().fromJson(jsonArray, type)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    fun handleUserInfoResponse(response: String): UserInfo? {
+        try {
+            val jsonObject = JSONObject(response)
+            Log.e("UserResponse:", response)
+            val data = jsonObject.getJSONObject("data").toString()
+            return Gson().fromJson(data, UserInfo::class.java)
         } catch (e: JSONException) {
             e.printStackTrace()
         }

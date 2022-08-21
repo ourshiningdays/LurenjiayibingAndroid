@@ -68,19 +68,21 @@ class VideoFragment : Fragment() {
      */
     private fun showVideoInfo(videoList: MutableList<VideoList>){
         println("showVideoInfo:$videoList")
-        val recyclerView: RecyclerView = requireActivity().findViewById(R.id.video_recyclerView)
-        val layoutManager = StaggeredGridLayoutManager(3,
-            StaggeredGridLayoutManager.VERTICAL
-        )
+        if(view != null)
+        {
+            val recyclerView: RecyclerView = requireView().findViewById(R.id.video_recyclerView)
+            val layoutManager = StaggeredGridLayoutManager(3,
+                StaggeredGridLayoutManager.VERTICAL
+            )
 
-        recyclerView.layoutManager = layoutManager
-        val adapter = VideoAdapter(videoList){
-            val intent = Intent(activity, WebViewActivity::class.java)
-            intent.putExtra("url", videoList[it].shareUrl)
-            startActivity(intent)
+            recyclerView.layoutManager = layoutManager
+            val adapter = VideoAdapter(videoList){
+                val intent = Intent(activity, WebViewActivity::class.java)
+                intent.putExtra("url", videoList[it].shareUrl)
+                startActivity(intent)
+            }
+            recyclerView.adapter = adapter
         }
-        recyclerView.adapter = adapter
-
 
     }
 }

@@ -17,8 +17,9 @@
     <string name="topicHot">话题热度：%s</string>
     <string name="tags">标签：%s</string>
     <string name="noTitle">无标题</string>>
-    <string name="playCount">播放数：%d</string>
-    <string name="commentCount">点赞数：%d</string>
+    <string name="playCount">\u25B6\uFE0F %d</string>
+    <string name="commentCount">\uD83D\uDCAC %d</string>
     <string name="topEmoji">\uD83D\uDD1D %s</string>
+    <string name="viewFollow">查看关注/粉丝信息</string>
     <!--    <string name="type">类型：%s</string>-->
 </resources>
