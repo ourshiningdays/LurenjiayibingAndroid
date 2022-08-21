@@ -41,13 +41,12 @@ class VideoAdapter(private val videoList: MutableList<VideoList>, val itemClick:
         holder.uploadTime.text = video.createTime?.let { getDateTime(it) }
         holder.itemView.setOnClickListener { itemClick(position) }
         Glide.with(context).load(video.cover).into(holder.cover)
-        if(video.isTop == true){
+        if(video.isTop == true){ //置顶视频
             val item: VideoList = videoList[position]
             item.title = context.getString(R.string.topEmoji, item.title)
             holder.title.text = item.title
             videoList.remove(item) // remove item from the list
-            videoList.add(0, item) // add at 0 index of your list
-
+            videoList.add(0, item) // add at 0 index of list
             //notifyDataSetChanged()
         }
     }

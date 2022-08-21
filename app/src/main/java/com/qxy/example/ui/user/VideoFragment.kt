@@ -58,7 +58,7 @@ class VideoFragment : Fragment() {
                 activity?.runOnUiThread {
                     if (videoListResp != null) {
                         showVideoInfo(videoListResp)
-                        Toast.makeText(activity, "获取视频信息成功", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(activity, "获取视频信息成功", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(activity, "获取视频信息失败"
                             , Toast.LENGTH_SHORT).show()

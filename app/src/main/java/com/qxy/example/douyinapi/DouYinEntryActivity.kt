@@ -44,13 +44,14 @@ class DouYinEntryActivity: Activity(),IApiEventHandler {
         } else if (resp.type == CommonConstants.ModeType.SEND_AUTH_RESPONSE) {
             val response = resp as Authorization.Response
             if (resp.isSuccess) {
-                Toast.makeText(this, "授权成功，获得权限：" + response.grantedPermissions,
+               Toast.makeText(this, "授权成功，获得权限：" + response.grantedPermissions,
                     Toast.LENGTH_LONG).show()
                 DouYinAuthUtil.getAccessToken(this, resp.authCode)
-                finish()
             }
         }
-
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onErrorIntent(intent: Intent?) {

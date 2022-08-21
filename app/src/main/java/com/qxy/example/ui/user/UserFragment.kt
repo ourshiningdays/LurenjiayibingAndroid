@@ -41,8 +41,10 @@ class UserFragment : Fragment() {
         val expiredTime = prefs.getLong("expired_time",0)
         if(accessToken == null || openId == null || expiredTime <= System.currentTimeMillis()){
             // 为空或过期要求授权
+            Toast.makeText(activity,"请先完成授权",Toast.LENGTH_SHORT).show()
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
+//            activity?.finish()
         } else{
             Toast.makeText(activity,"当前无需授权",Toast.LENGTH_SHORT).show()
             Log.e("获取到access_token", accessToken)
@@ -64,15 +66,6 @@ class UserFragment : Fragment() {
         val accessToken = prefs.getString("access_token", "")
         val openId = prefs.getString("open_id", "")
         val url = "https://open.douyin.com/oauth/userinfo/"
-//        val jsonObject = JSONObject()
-//        try {
-//            jsonObject.put("access_token", accessToken)
-//            jsonObject.put("open_id", openId)
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
-//        val mediaType = "application/json; charset=utf-8".toMediaType()
-//        val body = jsonObject.toString().toRequestBody(mediaType)
         var body: RequestBody? = null
         if(accessToken != null && openId != null)
             body = FormBody.Builder()

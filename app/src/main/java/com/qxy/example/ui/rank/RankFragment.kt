@@ -111,9 +111,7 @@ class RankFragment : Fragment() {
      * 请求排行榜信息
      */
     private fun requestRank(){
-
-        // 避免超过限额 本处暂时使用无效网络地址
-        val rankUrl = "https://open.douyin.<TEMP>.com/discovery/ent/rank/item?type=$currentRankType"
+        val rankUrl = "https://open.douyin.com/discovery/ent/rank/item?type=$currentRankType"
         val prefs = CustomApplication.context.getSharedPreferences("data", Context.MODE_PRIVATE)
         var clientToken = prefs.getString("client_token","")
         //TODO 下面的解决方案只是临时的。 后续必须修改

@@ -16,7 +16,7 @@ import com.qxy.example.douyinapi.DouYinAuthUtil
 class CustomApplication : Application() {
     companion object{
         @SuppressLint("StaticFieldLeak")
-        lateinit var context: Context
+        lateinit var context: Context //全局context
     }
     override fun onCreate() {
 
