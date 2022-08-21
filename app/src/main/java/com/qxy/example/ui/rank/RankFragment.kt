@@ -120,8 +120,9 @@ class RankFragment : Fragment() {
         while(clientToken == ""){
            clientToken = prefs.getString("client_token","")
         }
-
-        val request: Request = Request.Builder().addHeader("access-token", clientToken!!)
+        var request: Request? = null
+        if(clientToken != null)
+            request = Request.Builder().addHeader("access-token", clientToken)
             .url(rankUrl).get().build()
 
         val callback = object : Callback {
@@ -133,7 +134,8 @@ class RankFragment : Fragment() {
             }
             override fun onResponse(call: Call, response: Response) {
                 val TAG = "OnResp in RankFragment"
-                val rankListResp = Utility.handleGetRankResponse(response.body?.string()!!)
+                val rankListResp = response.body?.string()
+                    ?.let { Utility.handleGetRankResponse(it) }
                 Log.e(TAG, rankListResp.toString())
                 activity?.runOnUiThread {
                     if (rankListResp != null) {
@@ -146,7 +148,9 @@ class RankFragment : Fragment() {
                 }
             }
         }
-        OkHttpClient().newCall(request).enqueue(callback)
+        if (request != null) {
+            OkHttpClient().newCall(request).enqueue(callback)
+        }
     }
 
     /**

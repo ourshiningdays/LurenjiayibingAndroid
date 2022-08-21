@@ -73,11 +73,15 @@ class UserFragment : Fragment() {
 //        }
 //        val mediaType = "application/json; charset=utf-8".toMediaType()
 //        val body = jsonObject.toString().toRequestBody(mediaType)
-        val body: RequestBody = FormBody.Builder()
-            .add("access_token", accessToken!!)
-            .add("open_id", openId!!)
+        var body: RequestBody? = null
+        if(accessToken != null && openId != null)
+            body = FormBody.Builder()
+            .add("access_token", accessToken)
+            .add("open_id", openId)
             .build()
-        val request: Request = Request.Builder().url(url).post(body).build()
+        var request: Request? = null
+        if(body != null)
+            request = Request.Builder().url(url).post(body).build()
 
         val callback = object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -93,7 +97,7 @@ class UserFragment : Fragment() {
                 }
             }
         }
-        OkHttpClient().newCall(request).enqueue(callback)
+        request?.let { OkHttpClient().newCall(it).enqueue(callback) }
     }
 
     private fun showUserInfo(userInfo: UserInfo?) {

@@ -36,8 +36,12 @@ class VideoFragment : Fragment() {
         val openId = prefs.getString("open_id", null)
         val size = 20
         val followerUrl = "https://open.douyin.com/video/list/?count=$size&open_id=$openId"
-        val request: Request = Request.Builder().addHeader("access-token", accessToken!!)
-            .url(followerUrl).get().build()
+        var request: Request? = null
+        if(accessToken != null){
+            request = Request.Builder().addHeader("access-token", accessToken)
+                .url(followerUrl).get().build()
+        }
+
 
         val callback = object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -48,7 +52,8 @@ class VideoFragment : Fragment() {
             }
             override fun onResponse(call: Call, response: Response) {
                 val TAG = "OnResp in VideoFrag"
-                val videoListResp = Utility.handleGetVideoResponse(response.body?.string()!!)
+                val videoListResp = response.body?.string()
+                    ?.let { Utility.handleGetVideoResponse(it) }
                 Log.e(TAG, videoListResp.toString())
                 activity?.runOnUiThread {
                     if (videoListResp != null) {
@@ -61,7 +66,9 @@ class VideoFragment : Fragment() {
                 }
             }
         }
-        OkHttpClient().newCall(request).enqueue(callback)
+        if (request != null) {
+            OkHttpClient().newCall(request).enqueue(callback)
+        }
     }
     /**
      * 显示视频信息

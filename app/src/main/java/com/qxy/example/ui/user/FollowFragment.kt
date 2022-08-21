@@ -36,8 +36,11 @@ class FollowFragment : Fragment() {
         val openId = prefs.getString("open_id", null)
         val size = 20
         val followUrl = "https://open.douyin.com/following/list/?count=$size&open_id=$openId"
-        val request: Request = Request.Builder().addHeader("access-token", accessToken!!)
-            .url(followUrl).get().build()
+
+        val request: Request? = accessToken?.let {
+            Request.Builder().addHeader("access-token", it)
+                .url(followUrl).get().build()
+        }
 
         val callback = object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -48,7 +51,8 @@ class FollowFragment : Fragment() {
             }
             override fun onResponse(call: Call, response: Response) {
                 val TAG = "OnResp in FollowFrag"
-                val followListResp = Utility.handleGetFollowResponse(response.body?.string()!!)
+                val followListResp = response.body?.string()
+                    ?.let { Utility.handleGetFollowResponse(it) }
                 Log.e(TAG, followListResp.toString())
                 activity?.runOnUiThread {
                     if (followListResp != null) {
@@ -61,7 +65,9 @@ class FollowFragment : Fragment() {
                 }
             }
         }
-        OkHttpClient().newCall(request).enqueue(callback)
+        if (request != null) {
+            OkHttpClient().newCall(request).enqueue(callback)
+        }
     }
 
     /**
